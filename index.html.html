@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alessandro & Giorgia — 28 giugno 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Palette dominata dal Verde Salvia */
+    --salvia-light: #EBF0E9;
+    --salvia-soft:  #C2D1C0;
+    --salvia:       #879B83;
+    --salvia-deep:  #4B5B47;
+    --vine-dark:    #2D382A;
+    --cream:        #F9F8F3;
+    --cream-deep:   #EDE8DC;
+    --ink:          #242923;
+    --amber:        #C67A3E;
+    --wine:         #5C2430;
+    --line:         rgba(45,56,42,0.15);
+    --max-w: 720px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Public Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--vine-dark);
+  }
+
+  a{ color:inherit; }
+
+  :focus-visible{
+    outline:2px solid var(--salvia);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav.topnav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    display:flex;
+    justify-content:flex-end;
+    gap:22px;
+    padding:18px 28px;
+    background:linear-gradient(to bottom, rgba(235,240,233,0.95), rgba(235,240,233,0));
+    font-size:0.85rem;
+    opacity:0;
+    transform:translateY(-8px);
+    transition:opacity .4s ease, transform .4s ease;
+    pointer-events:none;
+  }
+  nav.topnav.visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  nav.topnav a{
+    text-decoration:none;
+    color:var(--vine-dark);
+    font-weight:500;
+    padding-bottom:2px;
+    border-bottom:1px solid transparent;
+    transition:border-color .2s ease;
+  }
+  nav.topnav a:hover{ border-color:var(--salvia); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+    /* Sfondo sfumato verde salvia */
+    background: linear-gradient(180deg, #9CB197 0%, #879B83 35%, #60735C 65%, #2D382A 100%);
+  }
+  .hero svg.hills{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+  }
+  .hero-content{
+    position:relative;
+    z-index:5;
+    padding:0 28px 48px;
+    color:var(--cream);
+  }
+  .hero-eyebrow{
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--salvia-light);
+    opacity:0.9;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    color:var(--cream);
+    font-size:clamp(2.6rem, 9vw, 4.6rem);
+    line-height:1.02;
+    font-weight:500;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:300;
+    display:block;
+    font-size:0.5em;
+    margin:6px 0;
+    opacity:0.9;
+  }
+  .hero-meta{
+    margin-top:18px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    font-size:0.98rem;
+    color:var(--cream);
+  }
+  .hero-meta span{ opacity:0.92; }
+
+  /* COUNTDOWN */
+  .countdown-container {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    max-width: 380px;
+  }
+  .cd-box {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 10px 14px;
+    border-radius: 6px;
+    flex: 1;
+    text-align: center;
+  }
+  .cd-number {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--cream);
+  }
+  .cd-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+    color: var(--salvia-light);
+    opacity: 0.85;
+  }
+
+  .hero-scroll{
+    position:absolute;
+    bottom:22px;
+    right:28px;
+    z-index:5;
+    font-size:0.78rem;
+    color:var(--cream);
+    opacity:0.75;
+    writing-mode:vertical-rl;
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    padding:96px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section.tint{
+    background:var(--salvia-light);
+  }
+  section.deep{
+    background:var(--vine-dark);
+    color:var(--cream);
+    border-bottom:none;
+  }
+  section.deep h2, section.deep h3{ color:var(--cream); }
+
+  .kicker{
+    font-size:0.82rem;
+    color:var(--salvia-deep);
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:14px;
+  }
+  section.deep .kicker{ color:var(--salvia-soft); }
+
+  h2{
+    font-size:clamp(1.7rem, 4vw, 2.3rem);
+    margin-bottom:22px;
+  }
+
+  p{ max-width:58ch; }
+  p + p{ margin-top:14px; }
+
+  /* ---------- PROGRAMMA ---------- */
+  .timeline{
+    margin-top:34px;
+    display:flex;
+    flex-direction:column;
+  }
+  .timeline-row{
+    display:grid;
+    grid-template-columns:88px 1fr;
+    gap:20px;
+    padding:20px 0;
+    border-top:1px solid var(--line);
+  }
+  .timeline-row:last-child{ border-bottom:1px solid var(--line); }
+  .timeline-time{
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    color:var(--salvia-deep);
+    font-weight:600;
+  }
+  .timeline-label{ font-weight:500; }
+  .timeline-sub{ font-size:0.92rem; opacity:0.75; margin-top:2px; }
+
+  .venue-card{
+    margin-top:36px;
+    padding:26px;
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-left:4px solid var(--salvia);
+  }
+  .venue-card h3{ font-size:1.2rem; margin-bottom:8px; }
+  .venue-card p{ font-size:0.95rem; }
+  .btn-map{
+    display:inline-block;
+    margin-top:16px;
+    font-size:0.88rem;
+    font-weight:500;
+    text-decoration:none;
+    color:var(--salvia-deep);
+    border-bottom:1px solid var(--salvia-deep);
+    padding-bottom:2px;
+  }
+  .btn-map:hover{ color:var(--vine-dark); border-color:var(--vine-dark); }
+
+  /* ---------- RSVP ---------- */
+  .deadline-banner{
+    display:inline-flex;
+    align-items:baseline;
+    gap:8px;
+    background:var(--salvia-deep);
+    color:var(--cream);
+    padding:10px 18px;
+    font-size:0.88rem;
+    margin-bottom:36px;
+  }
+  .deadline-banner strong{ font-family:'Fraunces', serif; font-weight:500; }
+
+  form{
+    margin-top:12px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .field label{
+    font-size:0.88rem;
+    color:var(--vine-dark);
+    font-weight:500;
+  }
+  .field input[type="text"],
+  .field input[type="number"],
+  .field input[type="email"],
+  .field textarea{
+    font-family:'Public Sans', sans-serif;
+    font-size:1rem;
+    padding:12px 14px;
+    background:var(--cream);
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .field textarea{ resize:vertical; min-height:80px; }
+  .field input:focus, .field textarea:focus{ border-color:var(--salvia-deep); }
+
+  .radio-group, .check-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 22px;
+  }
+  .radio-group label, .check-group label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  .radio-group input, .check-group input{
+    accent-color:var(--salvia-deep);
+    width:16px; height:16px;
+  }
+
+  fieldset{ border:none; padding:0; }
+  legend{
+    font-family:'Fraunces', serif;
+    font-size:1.1rem;
+    color:var(--vine-dark);
+    margin-bottom:14px;
+    padding:0;
+  }
+
+  .food-note{
+    font-size:0.85rem;
+    opacity:0.7;
+    margin-top:-4px;
+  }
+
+  button.submit{
+    align-self:flex-start;
+    margin-top:8px;
+    background:var(--salvia-deep);
+    color:var(--cream);
+    border:none;
+    padding:14px 30px;
+    font-family:'Public Sans', sans-serif;
+    font-size:0.95rem;
+    font-weight:500;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  button.submit:hover{ background:var(--vine-dark); }
+
+  .form-note{
+    margin-top:16px;
+    font-size:0.85rem;
+    opacity:0.7;
+    max-width:52ch;
+  }
+  .confirm-msg{
+    margin-top:16px;
+    font-size:0.92rem;
+    color:var(--salvia-deep);
+    display:none;
+  }
+  .confirm-msg.show{ display:block; }
+
+  /* ---------- REGALO ---------- */
+  .gift-card{
+    margin-top:30px;
+    padding:30px;
+    border:1px dashed rgba(235,240,233,0.3);
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .gift-card .label{
+    font-size:0.82rem;
+    color:var(--salvia-soft);
+  }
+  .gift-card .iban{
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:56px 0 80px;
+    text-align:left;
+    background:var(--cream);
+  }
+  footer .names{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--vine-dark);
+  }
+  footer .fine{
+    font-size:0.82rem;
+    opacity:0.6;
+    margin-top:10px;
+  }
+
+  @media (max-width:520px){
+    section{ padding:72px 0; }
+    .venue-card, .gift-card{ padding:20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav" id="topnav">
+  <a href="#programma">Programma</a>
+  <a href="#rsvp">Conferma</a>
+  <a href="#regalo">Regalo</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <!-- Sfondo vettoriale: Colline Salvia, Filari di Vigna, senza sole -->
+  <svg class="hills" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Collina lontana -->
+    <path d="M0,400 C180,360 350,395 520,370 C700,345 850,380 1000,350 L1000,700 L0,700 Z" fill="#6B7E68" opacity="0.6"/>
+    
+    <!-- Collina intermedia con filari di vigna -->
+    <path d="M0,480 C200,440 380,480 580,450 C760,420 880,450 1000,430 L1000,700 L0,700 Z" fill="#4B5B47"/>
+    <!-- Linee dei filari -->
+    <g stroke="#374534" stroke-width="3" opacity="0.65">
+      <path d="M0,500 C220,462 400,498 620,470 C790,448 890,466 1000,450" fill="none"/>
+      <path d="M0,530 C220,492 400,528 620,500 C790,478 890,496 1000,480" fill="none"/>
+      <path d="M0,560 C220,522 400,558 620,530 C790,508 890,526 1000,510" fill="none"/>
+      <path d="M0,590 C220,552 400,588 620,560 C790,538 890,556 1000,540" fill="none"/>
+    </g>
+
+    <!-- Foglie d'uva e tralci decorativi sugli angoli inferiori -->
+    <g fill="#2D382A">
+      <!-- Collina vicina -->
+      <path d="M0,590 C240,550 440,600 660,570 C820,548 910,578 1000,560 L1000,700 L0,700 Z"/>
+    </g>
+
+    <!-- Dettagli silhouettes di grappoli e foglie di vite ai lati -->
+    <g fill="#212A1F" opacity="0.4">
+      <!-- Tralcio SX -->
+      <path d="M-10,200 C30,220 50,260 20,300 C60,280 90,320 70,360 C50,340 10,350 -10,380 Z"/>
+      <circle cx="45" cy="310" r="6"/>
+      <circle cx="55" cy="318" r="5"/>
+      <circle cx="38" cy="322" r="5"/>
+      <circle cx="48" cy="328" r="4"/>
+      <!-- Tralcio DX -->
+      <path d="M1010,180 C970,200 950,240 980,280 C940,260 910,300 930,340 C950,320 990,330 1010,360 Z"/>
+      <circle cx="955" cy="290" r="6"/>
+      <circle cx="945" cy="298" r="5"/>
+      <circle cx="962" cy="302" r="5"/>
+      <circle cx="952" cy="308" r="4"/>
+    </g>
+  </svg>
+
+  <div class="hero-content wrap">
+    <div class="hero-eyebrow">Ci sposiamo</div>
+    <h1>Alessandro <em>&amp;</em> Giorgia</h1>
+    <div class="hero-meta">
+      <span>28 giugno 2027</span>
+      <span>·</span>
+      <span>Giardino L'Olivella, Castelli Romani</span>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-container" id="countdown">
+      <div class="cd-box">
+        <div class="cd-number" id="cd-days">00</div>
+        <div class="cd-label">Giorni</div>
+      </div>
+      <div class="cd-box">
+        <div class="cd-number" id="cd-hours">00</div>
+        <div class="cd-label">Ore</div>
+      </div>
+      <div class="cd-box">
+        <div class="cd-number" id="cd-mins">00</div>
+        <div class="cd-label">Minuti</div>
+      </div>
+      <div class="cd-box">
+        <div class="cd-number" id="cd-secs">00</div>
+        <div class="cd-label">Secondi</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">scorri</div>
+</header>
+
+<!-- ============ PROGRAMMA ============ -->
+<section id="programma">
+  <div class="wrap">
+    <div class="kicker">Il giorno</div>
+    <h2>Come si svolgerà la giornata</h2>
+    <p>Ci sposiamo in una vigna dei Castelli Romani, tra i filari e il panorama su Roma. Vi aspettiamo per festeggiare con noi al tramonto.</p>
+
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="timeline-time">18:00</div>
+        <div>
+          <div class="timeline-label">Ingresso invitati</div>
+          <div class="timeline-sub">Vi aspettiamo per accomodarvi prima dell'inizio della cerimonia.</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">18:30</div>
+        <div>
+          <div class="timeline-label">Cerimonia</div>
+          <div class="timeline-sub">A seguire, ricevimento nel giardino della location.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="venue-card">
+      <h3>Giardino L'Olivella</h3>
+      <p>Una location immersa nel verde dei vigneti dell'azienda agricola, con un giardino terrazzato affacciato su Roma. Il posto perfetto per un matrimonio all'aperto, circondati da ulivi e filari.</p>
+      <a class="btn-map" href="https://maps.app.goo.gl/XejZ4wh15ukwYd8t7" target="_blank" rel="noopener">Apri la posizione su Google Maps →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RSVP ============ -->
+<section id="rsvp" class="tint">
+  <div class="wrap">
+    <div class="kicker">RSVP</div>
+    <h2>Confermate la vostra presenza</h2>
+    <div class="deadline-banner">Rispondete entro il <strong>1° marzo 2027</strong></div>
+
+    <form id="rsvp-form">
+      <div class="field">
+        <label for="nome">Nome e cognome</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+
+      <fieldset class="field">
+        <legend>Sarai presente?</legend>
+        <div class="radio-group">
+          <label><input type="radio" name="presenza" value="Sì, sarò presente" checked> Sì, ci sarò</label>
+          <label><input type="radio" name="presenza" value="Non potrò essere presente"> Non potrò essere presente</label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="persone">Numero di persone (te incluso/a)</label>
+        <input type="number" id="persone" name="persone" min="1" max="10" value="1">
+      </div>
+
+      <fieldset class="field">
+        <legend>Preferenze alimentari</legend>
+        <div class="check-group">
+          <label><input type="checkbox" name="pref" value="Vegetariano/a"> Vegetariano/a</label>
+          <label><input type="checkbox" name="pref" value="Vegano/a"> Vegano/a</label>
+          <label><input type="checkbox" name="pref" value="Gravidanza"> Gravidanza</label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="intolleranze">Intolleranze, allergie o altre note alimentari</label>
+        <textarea id="intolleranze" name="intolleranze" placeholder="Es. intolleranza al lattosio, allergia alla frutta secca..."></textarea>
+        <div class="food-note">Lasciate vuoto se non ci sono esigenze particolari.</div>
+      </div>
+
+      <div class="field">
+        <label for="note">Altre note per noi</label>
+        <textarea id="note" name="note" placeholder="Facoltativo"></textarea>
+      </div>
+
+      <button type="submit" class="submit">Invia conferma</button>
+      <div class="confirm-msg" id="confirm-msg">Grazie! Si è aperto il tuo client di posta con la conferma già compilata: ti basta inviarla. Se non si apre nulla, scrivici direttamente.</div>
+      <p class="form-note">Inviando il modulo si aprirà la tua app di posta con un'email precompilata indirizzata a noi: dovrai solo premere invia.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ REGALO ============ -->
+<section id="regalo" class="deep">
+  <div class="wrap">
+    <div class="kicker">Lista nozze</div>
+    <h2>Un pensiero per noi</h2>
+    <p>La vostra presenza è il regalo più importante. Se desiderate comunque farci un pensiero, a breve pubblicheremo qui le coordinate per un contributo.</p>
+
+    <div class="gift-card">
+      <div class="label">IBAN</div>
+      <div class="iban">Verrà comunicato prossimamente</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="names">Alessandro &amp; Giorgia</div>
+    <div class="fine">28 giugno 2027 · Giardino L'Olivella, Castelli Romani</div>
+  </div>
+</footer>
+
+<script>
+  // Nav visualizzazione al momento dello scroll
+  const nav = document.getElementById('topnav');
+  const hero = document.querySelector('.hero');
+  const io = new IntersectionObserver(([entry]) => {
+    nav.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0.1 });
+  io.observe(hero);
+
+  // LOGICA COUNTDOWN
+  const targetDate = new Date('June 28, 2027 18:00:00').getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference > 0) {
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').innerText = String(minutes).padStart(2, '0');
+      document.getElementById('cd-secs').innerText = String(seconds).padStart(2, '0');
+    } else {
+      document.getElementById('countdown').innerHTML = "<div style='color:var(--cream); font-family:Fraunces; font-size:1.2rem;'>Oggi è il grande giorno!</div>";
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // RSVP -> mailto
+  const form = document.getElementById('rsvp-form');
+  const confirmMsg = document.getElementById('confirm-msg');
+  const RSVP_EMAIL = "alefantini@live.it,giorgiadellasanta98@gmail.com";
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const nome = form.nome.value.trim();
+    const presenza = form.presenza.value;
+    const persone = form.persone.value;
+    const prefs = Array.from(form.querySelectorAll('input[name="pref"]:checked')).map(i => i.value).join(', ') || 'Nessuna';
+    const intolleranze = form.intolleranze.value.trim() || 'Nessuna';
+    const note = form.note.value.trim() || '—';
+
+    const subject = `Conferma matrimonio — ${nome}`;
+    const body =
+`Nome: ${nome}
+Presenza: ${presenza}
+Numero di persone: ${persone}
+Preferenze alimentari: ${prefs}
+Intolleranze / allergie / altre note alimentari: ${intolleranze}
+Note aggiuntive: ${note}`;
+
+    const mailto = `mailto:${RSVP_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+
+    confirmMsg.classList.add('show');
+  });
+</script>
+
+</body>
+</html>
